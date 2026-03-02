@@ -3,54 +3,41 @@ using namespace std;
 
 int main()
 {
-    int n, m;
-    int i, j;
-    int a[50][50];
-
+    int a[10][10], rows, cols, key;
     bool found = false;
-    int item;
 
-    cout << "enter row and col:";
-    cin >> n >> m;
+    cout << "Enter number of rows and columns: ";
+    cin >> rows >> cols;
 
-    cout << "enter elemtns of matrix:";
-    for (i = 0; i < n; i++)
+    cout << "Enter matrix elements:\n";
+    for(int i = 0; i < rows; i++)
     {
-        for (j = 0; j < m; j++)
+        for(int j = 0; j < cols; j++)
         {
             cin >> a[i][j];
         }
     }
 
-    cout << "matrix\n";
-    for (i = 0; i < n; i++)
-    {
-        for (j = 0; j < m; j++)
-        {
-            cout << a[i][j] << " ";
-        }
-        cout << "\n";
-    }
+    cout << "Enter element to search: ";
+    cin >> key;
 
-    cout << "enter element to search:";
-    cin >> item;
-
-    for (i = 0; i < n; i++)
+    for(int i = 0; i < rows; i++)
     {
-        for (j = 0; j < m; j++)
+        for(int j = 0; j < cols; j++)
         {
-            if (a[i][j] == item)
+            if(a[i][j] == key)
             {
+                cout << "Element found at position: (" << i << "," << j << ")";
                 found = true;
-                cout << item << " found at position " << a[i][j];
                 break;
             }
-            else
-            {
-                cout << "not found:"
-            }
         }
+        if(found)
+            break;
     }
+
+    if(!found)
+        cout << "Element not found";
 
     return 0;
 }
