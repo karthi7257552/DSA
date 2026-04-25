@@ -1,19 +1,21 @@
 #include <iostream>
 using namespace std;
 
-// node structure
+// Structure for node
 struct node
 {
     int data;
     node *next;
+    node *prev;
 };
 
-// insert at end (create list)
-node *insertEnd(node *head, int val)
+// Insert at end
+node* insertEnd(node *head, int val)
 {
     node *newnode = new node();
     newnode->data = val;
     newnode->next = NULL;
+    newnode->prev = NULL;
 
     if (head == NULL)
     {
@@ -26,13 +28,28 @@ node *insertEnd(node *head, int val)
         {
             temp = temp->next;
         }
+
         temp->next = newnode;
+        newnode->prev = temp;
     }
 
     return head;
 }
 
-// search element
+// Display list
+void display(node *head)
+{
+    node *temp = head;
+    cout << "\nDoubly Linked List: ";
+    while (temp != NULL)
+    {
+        cout << temp->data << " -> ";
+        temp = temp->next;
+    }
+    cout << "NULL\n";
+}
+
+// Search element
 void search(node *head, int key)
 {
     node *temp = head;
@@ -65,6 +82,7 @@ int main()
     cout << "Enter number of nodes: ";
     cin >> n;
 
+    // Create list
     for (int i = 0; i < n; i++)
     {
         cout << "Enter value: ";
@@ -72,6 +90,10 @@ int main()
         head = insertEnd(head, val);
     }
 
+    // Display list
+    display(head);
+
+    // Search
     cout << "Enter element to search: ";
     cin >> key;
 
